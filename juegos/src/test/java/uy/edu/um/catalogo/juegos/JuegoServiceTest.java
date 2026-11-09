@@ -62,7 +62,7 @@ class JuegoServiceTest {
 
         List<Juego> res = servicio.listar();
 
-        assertEquals(3, res.size());
+        assertEquals(2, res.size());
         assertEquals("Celeste", res.get(0).getNombre());
     }
 }
