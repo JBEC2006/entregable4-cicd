@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar juego</title>
+    <link rel="stylesheet" th:href="@{/estilos.css}">
+</head>
+<body>
+<h1>Registrar juego</h1>
+
+<form class="formulario" th:action="@{/juegos}" th:object="${juego}" method="post">
+    <label>Nombre</label>
+    <input type="text" th:field="*{nombre}" required>
+
+    <label>Género</label>
+    <input type="text" th:field="*{genero}" list="listaGeneros" required>
+    <datalist id="listaGeneros">
+        <option th:each="genero : ${generos}" th:value="${genero}"></option>
+    </datalist>
+
+    <label>Plataforma</label>
+    <input type="text" th:field="*{plataforma}">
+
+    <label>URL de la imagen</label>
+    <input type="text" th:field="*{imagenUrl}">
+
+    <button type="submit">Guardar</button>
+    <a th:href="@{/}">Volver</a>
+</form>
+</body>
+</html>

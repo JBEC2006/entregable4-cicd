@@ -1,0 +1,9 @@
+target/
+.idea/
+.vscode/
+*.iml
+*.db
+*.log
+data/
+.claude-local/
+CLAUDE.md

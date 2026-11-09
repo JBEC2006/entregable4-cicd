@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 30px;
+    background-color: #f2f2f2;
+}
+
+h1 {
+    margin-bottom: 5px;
+}
+
+.subtitulo {
+    color: #666;
+    margin-top: 0;
+}
+
+.filtro {
+    margin: 20px 0;
+}
+
+.boton {
+    margin-left: 15px;
+}
+
+.catalogo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.tarjeta {
+    width: 200px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.tarjeta img {
+    width: 180px;
+    height: 240px;
+    object-fit: cover;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 6px;
+}

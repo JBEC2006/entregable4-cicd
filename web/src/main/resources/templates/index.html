@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo de videojuegos</title>
+    <link rel="stylesheet" th:href="@{/estilos.css}">
+</head>
+<body>
+<h1>Catálogo de videojuegos</h1>
+<p class="subtitulo">Todos los juegos que tenemos registrados</p>
+
+<form class="filtro" th:action="@{/}" method="get">
+    <select name="genero">
+        <option value="">Todos los géneros</option>
+        <option th:each="genero : ${generos}" th:value="${genero}" th:text="${genero}"
+                th:selected="${genero == generoElegido}"></option>
+    </select>
+    <button type="submit">Filtrar</button>
+    <a class="boton" th:href="@{/juegos/nuevo}">Registrar juego</a>
+</form>
+
+<p th:if="${juegos.isEmpty()}">No hay juegos para mostrar</p>
+
+<div class="catalogo">
+    <div class="tarjeta" th:each="juego : ${juegos}">
+        <img th:src="${juego.imagenUrl}" th:alt="${juego.nombre}">
+        <h3 th:text="${juego.nombre}">Nombre</h3>
+        <p th:text="${juego.genero + ' - ' + juego.plataforma}">Genero</p>
+    </div>
+</div>
+</body>
+</html>
