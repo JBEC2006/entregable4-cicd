@@ -40,8 +40,7 @@ pipeline {
 
         stage('Empaquetado') {
             steps {
-                echo 'Generando el jar de la aplicación...'
-                bat 'mvn -B package -DskipUnitarios=true'
+                echo 'Guardando el jar en el repositorio de artefactos...'
                 archiveArtifacts artifacts: 'web/target/catalogo.jar', fingerprint: true
             }
         }

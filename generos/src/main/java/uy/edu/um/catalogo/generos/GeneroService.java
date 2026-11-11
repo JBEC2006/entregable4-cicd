@@ -28,8 +28,4 @@ public class GeneroService {
         }
         return repo.findByGeneroIgnoreCaseOrderByNombre(generoBuscado);
     }
-
-    public long contarPorGenero(String generoBuscado) {
-        return buscarPorGenero(generoBuscado).size();
-    }
 }

@@ -50,8 +50,8 @@ Despues entrar a http://localhost:8081
 1. Checkout
 2. Build
 3. Tests unitarios
-4. Tests de integración
-5. Empaquetado: genera `web/target/catalogo.jar` y lo archiva en Jenkins con fingerprint
+4. Tests de integración: además de correr los tests, `mvn verify` genera `web/target/catalogo.jar`
+5. Empaquetado: archiva ese jar en Jenkins con fingerprint, así el jar se construye una sola vez
 6. Deploy a producción: corre `scripts/deploy.bat`
 
 Jenkins revisa el repositorio cada minuto con `pollSCM` y si hay cambios corre el pipeline. Si falla cualquier stage, el pipeline se corta y producción queda con la versión anterior.

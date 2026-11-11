@@ -53,13 +53,4 @@ class GeneroServiceTest {
 
         verify(repo).findAllByOrderByNombre();
     }
-
-    @Test
-    void contarPorGeneroDevuelveLaCantidad() {
-        when(repo.findByGeneroIgnoreCaseOrderByNombre("Rpg")).thenReturn(List.of(
-                new Juego("Skyrim", "Rpg", "PC", null),
-                new Juego("Persona 5", "Rpg", "PS4", null)));
-
-        assertEquals(2, servicio.contarPorGenero("Rpg"));
-    }
 }
