@@ -37,8 +37,14 @@ public class JuegoController {
     }
 
     @PostMapping("/juegos")
-    public String guardar(@ModelAttribute Juego juego) {
-        juegoService.registrar(juego);
+    public String guardar(@ModelAttribute Juego juego, Model model) {
+        try {
+            juegoService.registrar(juego);
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("generos", generoService.listarGeneros());
+            return "nuevo";
+        }
         return "redirect:/";
     }
 }

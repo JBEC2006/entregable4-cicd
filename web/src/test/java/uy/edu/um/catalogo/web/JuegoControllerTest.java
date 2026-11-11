@@ -59,4 +59,14 @@ class JuegoControllerTest {
 
         verify(juegoService).registrar(any(Juego.class));
     }
+
+    @Test
+    void guardarSinNombreVuelveAlFormulario() throws Exception {
+        when(juegoService.registrar(any(Juego.class))).thenThrow(new IllegalArgumentException("El juego tiene que tener nombre"));
+
+        mockMvc.perform(post("/juegos").param("nombre", "   ").param("genero", "Rpg"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("nuevo"))
+                .andExpect(model().attribute("error", "El juego tiene que tener nombre"));
+    }
 }

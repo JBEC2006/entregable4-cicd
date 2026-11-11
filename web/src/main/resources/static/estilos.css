@@ -47,3 +47,7 @@ h1 {
     width: 300px;
     gap: 6px;
 }
+
+.error {
+    color: #c0392b;
+}

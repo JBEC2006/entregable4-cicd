@@ -7,22 +7,23 @@
 </head>
 <body>
 <h1>Registrar juego</h1>
+<p class="error" th:if="${error}" th:text="${error}"></p>
 
 <form class="formulario" th:action="@{/juegos}" th:object="${juego}" method="post">
     <label>Nombre</label>
-    <input type="text" th:field="*{nombre}" required>
+    <input type="text" th:field="*{nombre}" maxlength="100" required>
 
     <label>Género</label>
-    <input type="text" th:field="*{genero}" list="listaGeneros" required>
+    <input type="text" th:field="*{genero}" list="listaGeneros" maxlength="50" required>
     <datalist id="listaGeneros">
         <option th:each="genero : ${generos}" th:value="${genero}"></option>
     </datalist>
 
     <label>Plataforma</label>
-    <input type="text" th:field="*{plataforma}">
+    <input type="text" th:field="*{plataforma}" maxlength="50">
 
     <label>URL de la imagen</label>
-    <input type="text" th:field="*{imagenUrl}">
+    <input type="text" th:field="*{imagenUrl}" maxlength="300">
 
     <button type="submit">Guardar</button>
     <a th:href="@{/}">Volver</a>
