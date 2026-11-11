@@ -22,8 +22,15 @@ if exist "%DESTINO%\app.jar" (
 )
 
 call :frenar
+netstat -ano | findstr ":%PUERTO% " | findstr "LISTENING" > nul && (
+    echo No se pudo frenar la version anterior
+    exit /b 1
+)
 echo Copiando la version nueva
-copy /Y "%JAR_NUEVO%" "%DESTINO%\app.jar" > nul
+copy /Y "%JAR_NUEVO%" "%DESTINO%\app.jar" > nul || (
+    echo No se pudo copiar el jar nuevo
+    exit /b 1
+)
 call :levantar
 call :probar
 
@@ -66,7 +73,6 @@ set INTENTOS=0
 set /a INTENTOS+=1
 ping -n 3 127.0.0.1 > nul
 for /f %%c in ('curl -s -o NUL -w "%%{http_code}" http://localhost:%PUERTO%%RUTA_HUMO%') do set CODIGO=%%c
-if "%CODIGO%"=="200" exit /b 0
-if "%CODIGO%"=="404" exit /b 0
+if not "%CODIGO%"=="000" exit /b 0
 if %INTENTOS% lss 30 goto esperar
 exit /b 0
