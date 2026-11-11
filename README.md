@@ -10,7 +10,7 @@ Repositorio: https://github.com/JBEC2006/entregable4-cicd
 pom.xml            pom padre
 juegos/            módulo para registrar y listar juegos (entidad, repositorio y servicio)
 generos/           módulo para clasificar y filtrar los juegos por género
-web/               aplicación Spring Boot, controller, vistas Thymeleaf y configuracion
+web/               aplicación Spring Boot, controller, vistas Thymeleaf y configuración
 scripts/deploy.bat script de despliegue a producción con respaldo, prueba de humo y rollback
 Jenkinsfile        pipeline declarativo
 ```
