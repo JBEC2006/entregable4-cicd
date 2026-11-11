@@ -8,10 +8,10 @@ Repositorio: https://github.com/JBEC2006/entregable4-cicd
 
 ```
 pom.xml            pom padre
-juegos/            modulo para registrar y listar juegos (entidad, repositorio y servicio)
-generos/           modulo para clasificar y filtrar los juegos por genero
-web/               aplicacion Spring Boot, controller, vistas Thymeleaf y configuracion
-scripts/deploy.bat script de despliegue a produccion con respaldo, prueba de humo y rollback
+juegos/            módulo para registrar y listar juegos (entidad, repositorio y servicio)
+generos/           módulo para clasificar y filtrar los juegos por género
+web/               aplicación Spring Boot, controller, vistas Thymeleaf y configuracion
+scripts/deploy.bat script de despliegue a producción con respaldo, prueba de humo y rollback
 Jenkinsfile        pipeline declarativo
 ```
 
@@ -28,7 +28,7 @@ Jenkinsfile        pipeline declarativo
 |------------|--------|---------------------------------------|
 | Jenkins    | 8080   |                                       |
 | Desarrollo | 8081   | web/data/juegos-dev (H2 en archivo)   |
-| Produccion | 8082   | C:\ambientes\prod\data\juegos         |
+| Producción | 8082   | C:\ambientes\prod\data\juegos         |
 
 La base se inicializa con `schema.sql` y `data.sql`. Las dos usan sentencias que no borran datos (`CREATE TABLE IF NOT EXISTS` y `MERGE`), así que los juegos registrados en producción se mantienen entre despliegues.
 
@@ -40,7 +40,7 @@ cd web
 mvn spring-boot:run
 ```
 
-Despues entrar a http://localhost:8081
+Después entrar a http://localhost:8081
 
 ## Tests
 
