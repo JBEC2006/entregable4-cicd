@@ -16,7 +16,7 @@ public class JuegoService {
             throw new IllegalArgumentException("El juego tiene que tener nombre");
         }
         if (nuevoJuego.getImagenUrl() == null || nuevoJuego.getImagenUrl().isBlank()) {
-            nuevoJuego.setImagenUrl("https://placehold.co/300x400?text=Sin+imagen");
+            nuevoJuego.setImagenUrl("/sin-portada.svg");
         }
         return repo.save(nuevoJuego);
     }

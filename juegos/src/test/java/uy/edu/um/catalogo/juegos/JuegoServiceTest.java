@@ -50,7 +50,7 @@ class JuegoServiceTest {
 
         Juego res = servicio.registrar(juego);
 
-        assertEquals("https://placehold.co/300x400?text=Sin+imagen", res.getImagenUrl());
+        assertEquals("/sin-portada.svg", res.getImagenUrl());
     }
 
     @Test

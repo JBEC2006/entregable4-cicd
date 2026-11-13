@@ -1,53 +1,313 @@
+:root {
+    --carcasa: #d8d4e2;
+    --carcasa-oscura: #bdb7cd;
+    --papel: #f3f1f7;
+    --tinta: #241f33;
+    --tinta-suave: #5d5672;
+    --violeta: #5a4a8f;
+    --violeta-claro: #8c7cc4;
+    --rojo: #b3364a;
+    --sombra: 4px 4px 0 var(--tinta);
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 30px;
-    background-color: #f2f2f2;
+    margin: 0;
+    padding: 48px 40px 64px;
+    font-family: "Rubik", "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--tinta);
+    background-color: var(--carcasa);
+    background-image: radial-gradient(var(--carcasa-oscura) 1px, transparent 1px);
+    background-size: 6px 6px;
+}
+
+.pagina {
+    max-width: 1120px;
+    margin: 0 auto;
 }
 
 h1 {
-    margin-bottom: 5px;
+    margin: 0;
+    font-family: "Pixelify Sans", monospace;
+    font-weight: 600;
+    font-size: clamp(34px, 5vw, 56px);
+    line-height: 1.05;
+    color: var(--violeta);
+    text-shadow: 3px 3px 0 var(--tinta);
 }
 
 .subtitulo {
-    color: #666;
-    margin-top: 0;
+    margin: 12px 0 0;
+    max-width: 60ch;
+    color: var(--tinta-suave);
 }
 
-.filtro {
-    margin: 20px 0;
+.barra {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin: 32px 0 40px;
+    padding-bottom: 28px;
+    border-bottom: 3px solid var(--tinta);
 }
 
-.boton {
-    margin-left: 15px;
+.barra .boton-principal {
+    margin-left: auto;
+}
+
+button,
+.boton,
+.boton-principal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 20px;
+    font-family: "Silkscreen", monospace;
+    font-size: 15px;
+    color: var(--tinta);
+    text-decoration: none;
+    background-color: var(--papel);
+    border: 3px solid var(--tinta);
+    border-radius: 0;
+    box-shadow: var(--sombra);
+    cursor: pointer;
+    transition: transform 60ms steps(2), box-shadow 60ms steps(2);
+}
+
+.boton-principal {
+    color: var(--papel);
+    background-color: var(--violeta);
+}
+
+button:hover,
+.boton:hover {
+    background-color: #ffffff;
+}
+
+.boton-principal:hover {
+    background-color: var(--violeta-claro);
+}
+
+button:active,
+.boton:active,
+.boton-principal:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 var(--tinta);
+}
+
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+input:focus-visible {
+    outline: 3px solid var(--violeta-claro);
+    outline-offset: 3px;
+}
+
+select {
+    appearance: none;
+    display: inline-flex;
+    align-items: center;
+    height: 44px;
+    min-width: 220px;
+    padding: 0 44px 0 14px;
+    line-height: 38px;
+    white-space: nowrap;
+    font-family: "Rubik", "Segoe UI", sans-serif;
+    font-size: 16px;
+    color: var(--tinta);
+    background-color: var(--papel);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' shape-rendering='crispEdges'%3E%3Cpath fill='%23241f33' d='M0 0h12v2H0zM2 2h8v2H2zM4 4h4v2H4zM5 6h2v2H5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    border: 3px solid var(--tinta);
+    border-radius: 0;
+    box-shadow: var(--sombra);
+    cursor: pointer;
+}
+
+@supports (appearance: base-select) {
+    select,
+    ::picker(select) {
+        appearance: base-select;
+    }
+
+    select::picker-icon {
+        display: none;
+    }
+
+    ::picker(select) {
+        margin-top: 8px;
+        padding: 6px;
+        background-color: var(--papel);
+        border: 3px solid var(--tinta);
+        box-shadow: var(--sombra);
+    }
+
+    option {
+        padding: 8px 12px;
+    }
+
+    option::checkmark {
+        display: none;
+    }
+
+    option:hover,
+    option:focus-visible {
+        color: var(--papel);
+        background-color: var(--violeta);
+    }
+
+    option:checked {
+        font-weight: 600;
+    }
 }
 
 .catalogo {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 40px 28px;
 }
 
 .tarjeta {
-    width: 200px;
-    background-color: white;
-    padding: 10px;
-    border-radius: 6px;
-    text-align: center;
+    margin: 0;
 }
 
 .tarjeta img {
-    width: 180px;
-    height: 240px;
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;
     object-fit: cover;
+    background-color: var(--papel);
+    border: 3px solid var(--tinta);
+    box-shadow: 6px 6px 0 var(--tinta);
+}
+
+.tarjeta h3 {
+    margin: 18px 0 6px;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.datos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 10px;
+    margin: 0;
+    font-size: 14px;
+    color: var(--tinta-suave);
+}
+
+.genero {
+    padding: 1px 8px;
+    color: var(--papel);
+    background-color: var(--tinta);
+}
+
+.vacio {
+    padding: 48px 24px;
+    text-align: center;
+    color: var(--tinta-suave);
+    background-color: var(--papel);
+    border: 3px dashed var(--tinta-suave);
+}
+
+.panel {
+    max-width: 520px;
+    margin-top: 32px;
+    padding: 32px;
+    background-color: var(--papel);
+    border: 3px solid var(--tinta);
+    box-shadow: 8px 8px 0 var(--tinta);
 }
 
 .formulario {
     display: flex;
     flex-direction: column;
-    width: 300px;
-    gap: 6px;
+}
+
+.formulario label {
+    margin: 18px 0 6px;
+    font-weight: 600;
+}
+
+.formulario label:first-child {
+    margin-top: 0;
+}
+
+.opcional {
+    font-weight: 400;
+    color: var(--tinta-suave);
+}
+
+.formulario input {
+    min-height: 44px;
+    padding: 0 12px;
+    font-family: inherit;
+    font-size: 16px;
+    color: var(--tinta);
+    background-color: #ffffff;
+    border: 3px solid var(--tinta);
+    border-radius: 0;
+}
+
+.acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+    margin-top: 28px;
 }
 
 .error {
-    color: #c0392b;
+    margin: 0 0 24px;
+    padding: 12px 16px;
+    color: var(--papel);
+    background-color: var(--rojo);
+    border: 3px solid var(--tinta);
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 32px 16px 48px;
+    }
+
+    .barra .boton-principal {
+        margin-left: 0;
+    }
+
+    select {
+        flex: 1 1 100%;
+        min-width: 0;
+    }
+
+    .barra button,
+    .barra .boton-principal {
+        flex: 1;
+    }
+
+    .catalogo {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px 18px;
+    }
+
+    .panel {
+        padding: 22px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    button,
+    .boton,
+    .boton-principal {
+        transition: none;
+    }
 }

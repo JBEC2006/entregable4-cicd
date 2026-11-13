@@ -2,31 +2,43 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registrar juego</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@600&family=Rubik:wght@400;600&family=Silkscreen&display=swap">
     <link rel="stylesheet" th:href="@{/estilos.css}">
 </head>
 <body>
-<h1>Registrar juego</h1>
-<p class="error" th:if="${error}" th:text="${error}"></p>
+<main class="pagina">
+    <h1>Registrar juego</h1>
+    <p class="subtitulo">Si no ponés una imagen, el juego se muestra con una portada genérica</p>
 
-<form class="formulario" th:action="@{/juegos}" th:object="${juego}" method="post">
-    <label>Nombre</label>
-    <input type="text" th:field="*{nombre}" maxlength="100" required>
+    <div class="panel">
+        <p class="error" th:if="${error}" th:text="${error}"></p>
 
-    <label>Género</label>
-    <input type="text" th:field="*{genero}" list="listaGeneros" maxlength="50" required>
-    <datalist id="listaGeneros">
-        <option th:each="genero : ${generos}" th:value="${genero}"></option>
-    </datalist>
+        <form class="formulario" th:action="@{/juegos}" th:object="${juego}" method="post">
+            <label for="nombre">Nombre</label>
+            <input type="text" th:field="*{nombre}" maxlength="100" required>
 
-    <label>Plataforma</label>
-    <input type="text" th:field="*{plataforma}" maxlength="50">
+            <label for="genero">Género</label>
+            <input type="text" th:field="*{genero}" list="listaGeneros" maxlength="50" required>
+            <datalist id="listaGeneros">
+                <option th:each="genero : ${generos}" th:value="${genero}"></option>
+            </datalist>
 
-    <label>URL de la imagen</label>
-    <input type="text" th:field="*{imagenUrl}" maxlength="300">
+            <label for="plataforma">Plataforma <span class="opcional">(opcional)</span></label>
+            <input type="text" th:field="*{plataforma}" maxlength="50">
 
-    <button type="submit">Guardar</button>
-    <a th:href="@{/}">Volver</a>
-</form>
+            <label for="imagenUrl">URL de la imagen <span class="opcional">(opcional)</span></label>
+            <input type="url" th:field="*{imagenUrl}" maxlength="300" placeholder="https://">
+
+            <div class="acciones">
+                <button class="boton-principal" type="submit">Guardar</button>
+                <a class="boton" th:href="@{/}">Volver</a>
+            </div>
+        </form>
+    </div>
+</main>
 </body>
 </html>

@@ -2,31 +2,42 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Catálogo de videojuegos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@600&family=Rubik:wght@400;600&family=Silkscreen&display=swap">
     <link rel="stylesheet" th:href="@{/estilos.css}">
 </head>
 <body>
-<h1>Catálogo de videojuegos</h1>
-<p class="subtitulo">Todos los juegos registrados, filtralos por género</p>
+<main class="pagina">
+    <h1>Catálogo de videojuegos</h1>
+    <p class="subtitulo">Todos los juegos registrados, filtralos por género</p>
 
-<form class="filtro" th:action="@{/}" method="get">
-    <select name="genero">
-        <option value="">Todos los géneros</option>
-        <option th:each="genero : ${generos}" th:value="${genero}" th:text="${genero}"
-                th:selected="${genero == generoElegido}"></option>
-    </select>
-    <button type="submit">Filtrar</button>
-    <a class="boton" th:href="@{/juegos/nuevo}">Registrar juego</a>
-</form>
+    <form class="barra" th:action="@{/}" method="get">
+        <select name="genero" aria-label="Género">
+            <option value="">Todos los géneros</option>
+            <option th:each="genero : ${generos}" th:value="${genero}" th:text="${genero}"
+                    th:selected="${genero == generoElegido}"></option>
+        </select>
+        <button type="submit">Filtrar</button>
+        <a class="boton-principal" th:href="@{/juegos/nuevo}">Registrar juego</a>
+    </form>
 
-<p th:if="${juegos.isEmpty()}">No hay juegos para mostrar</p>
+    <p class="vacio" th:if="${juegos.isEmpty()}">No hay juegos para mostrar</p>
 
-<div class="catalogo">
-    <div class="tarjeta" th:each="juego : ${juegos}">
-        <img th:src="${juego.imagenUrl}" th:alt="${juego.nombre}">
-        <h3 th:text="${juego.nombre}">Nombre</h3>
-        <p th:text="${juego.genero + ' - ' + juego.plataforma}">Genero</p>
+    <div class="catalogo">
+        <figure class="tarjeta" th:each="juego : ${juegos}">
+            <img th:src="${juego.imagenUrl}" th:alt="${juego.nombre}" loading="lazy"
+                 onerror="this.onerror=null;this.src='/sin-portada.svg'">
+            <h3 th:text="${juego.nombre}">Nombre</h3>
+            <p class="datos">
+                <span class="genero" th:text="${juego.genero}">Genero</span>
+                <span th:if="${juego.plataforma != null and !juego.plataforma.isBlank()}"
+                      th:text="${juego.plataforma}">Plataforma</span>
+            </p>
+        </figure>
     </div>
-</div>
+</main>
 </body>
 </html>
